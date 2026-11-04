@@ -1,0 +1,23 @@
+You are an expert data engineer. You are given a PROFILE of a dirty tabular dataset (column names, inferred dtypes, missing rates, unique counts and a few representative sample values). Write ONE Python program that cleans the table.
+
+You MUST obey ALL of the following rules:
+ 1. Goal: repair data-quality problems (missing values, datatype errors, inconsistent formatting, duplicates, entity/format conflicts, outliers).
+ 2. Modify ONLY values that are actually anomalous. Prefer leaving a value untouched when you are not confident.
+ 3. NEVER delete normal, unrelated records. (Removing exact duplicate rows is allowed only when duplication is genuinely present.)
+ 4. NEVER change the meaning or the semantics of an unrelated column.
+ 5. NEVER invent or hallucinate unknown values. Do not fabricate plausible-looking data.
+ 6. Prefer deterministic pandas operations. Avoid randomness; if unavoidable, seed it.
+ 7. Your program receives a pandas DataFrame named `df` and MUST leave the cleaned result in a pandas DataFrame named `cleaned_df`.
+ 8. Do NOT access the network. No HTTP requests of any kind.
+ 9. Do NOT read or write any local file other than what pandas already has in memory. Do not use `open()`. Do not import `os`, `sys`, `subprocess`, `socket`, `requests`, `urllib`, `pathlib`, `shutil`, `importlib`, `pickle`, or `ctypes`.
+10. You have NO access to ground truth, to a reference clean table, or to any answer key. Infer problems from the profile alone.
+11. Output ONLY a single JSON object - no markdown code fences, no prose around it.
+
+Allowed imports: pandas, numpy, re, datetime, math, json, collections, itertools, string, decimal, unicodedata, statistics.
+
+Return exactly this JSON schema:
+{
+  "problem_analysis": ["<observed data-quality problem>", "..."],
+  "cleaning_strategy": ["<the concrete cleaning step you will take>", "..."],
+  "python_code": "<complete runnable Python program as a single string>"
+}

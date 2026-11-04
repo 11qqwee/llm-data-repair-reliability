@@ -1,0 +1,9 @@
+cff-version: 1.2.0
+message: "If you use this code or these prompts in your research, please cite the following article."
+title: "Beyond Self-Correction: Reliability Control for Large Language Model-Based Data Repair"
+authors:
+  - family-names: "Wang"
+    given-names: "Yi"
+version: 1.0.0
+date-released: "2026-11-04"
+url: "https://github.com/11qqwee/llm-data-repair-reliability"

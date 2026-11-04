@@ -1,0 +1,42 @@
+# Ground-Truth-Free Verification Gate - frozen policy configuration
+version: v1
+policy_name: "GT-free verification gate between the first and the second cleaning attempt"
+
+decision_order:
+  - hard_rejection
+  - structural_regression
+  - structural_or_validator_improvement
+  - relative_over_cleaning
+  - uncertain
+
+uncertain_policy: prefer_first_attempt
+no_second_attempt_policy: use_first_attempt
+
+hard_rules:
+  H1_execution_regression: "first attempt executed, second attempt did not"
+  H2_validity_regression: "first attempt produced a valid table, second did not"
+  H3_schema_regression: "first attempt kept the input schema, second did not"
+  H4_column_set_changed: "second attempt changed the column set of the input table"
+  H5_truncated_output: "second response hit the output-token cap"
+  H6_unparseable: "second response could not be parsed into code"
+
+dominance:
+  dimensions: [execution, validity, schema]
+  rule: "a strictly better dimension with no strictly worse dimension"
+  validator_dimension: warning_count
+
+relative_over_cleaning:
+  mode: relative_comparison
+  rule: "second modifies a strictly larger share of cells than first AND is not structurally or validator-better -> over-cleaning risk -> ROLLBACK"
+  uses_absolute_threshold: false
+
+no_learned_model: true
+threshold_source: "none (parameter-free; no development calibration observations exist)"
+
+forbidden_inputs:
+  - clean_table
+  - edit_log
+  - cell_recovery_accuracy
+  - clean_cell_preservation
+  - collateral_damage_rate
+  - table_exact_match

@@ -1,0 +1,29 @@
+You previously produced a cleaning program for this table.
+
+=== TABLE PROFILE (unchanged from your first attempt) ===
+{profile_block}
+
+=== YOUR PREVIOUS CLEANING PROGRAM ===
+{previous_code}
+
+=== EXECUTION AND VALIDATION FEEDBACK ===
+{feedback_block}
+
+=== REVISION INSTRUCTIONS ===
+Revise the cleaning logic only where necessary. Prioritise, in this order:
+ 1. preserving the original schema (same columns, no added rows);
+ 2. avoiding unnecessary modification of values that are already valid;
+ 3. resolving the remaining suspicious patterns listed above;
+ 4. producing output that executes and is structurally valid;
+ 5. making the minimum justified repair rather than aggressively rewriting the table.
+
+The feedback signals above may indicate possible problems, but they are NOT ground truth: they are derived from execution and structural validation only. No defective cell has been identified to you, and you should not assume that every flagged pattern is an error.
+
+Return the COMPLETE revised program, not a fragment or a diff.
+
+Respond with exactly the same JSON schema as before:
+{
+  "problem_analysis": ["<...>"],
+  "cleaning_strategy": ["<...>"],
+  "python_code": "<complete runnable program>"
+}
